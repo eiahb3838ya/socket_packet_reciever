@@ -1,4 +1,4 @@
-// windows socket.cpp: ©w¸q¥D±±¥xÀ³¥Îµ{¦¡ªº¶i¤JÂI¡C
+// windows socket.cpp: å®šç¾©ä¸»æ§å°æ‡‰ç”¨ç¨‹å¼çš„é€²å…¥é»ã€‚
 //
 #pragma comment(lib,"wsock32.lib")
 
@@ -20,8 +20,8 @@ int main() {
 
 	//init WSAData
 	WSAData wsaData;
-	WORD version = MAKEWORD(2, 2); // ª©¥»
-	int iResult = WSAStartup(MAKEWORD(2, 2), &wsaData); // ¦¨¥\¦^¶Ç 0
+	WORD version = MAKEWORD(2, 2); // ç‰ˆæœ¬
+	int iResult = WSAStartup(MAKEWORD(2, 2), &wsaData); // æˆåŠŸå›å‚³ 0
 	if (iResult != 0) {
 		printf("init WSAData fail");
 		getchar();
@@ -34,7 +34,7 @@ int main() {
 	SOCKET sListen = INVALID_SOCKET;
 	sListen = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if (sListen == INVALID_SOCKET) {
-		// «Ø¥ß¥¢±Ñ
+		// å»ºç«‹å¤±æ•—
 		printf("build socket fail");
 		getchar();
 	}
@@ -44,11 +44,11 @@ int main() {
 
 	//set sockaddr_in
 	SOCKADDR_IN addr;
-	memset(&addr, 0, sizeof(addr)); // ²MªÅ,±N¸ê®Æ³]¬° 0
-									//addr.sin_addr.s_addr = inet_addr("127.0.0.1"); // ³]©w IP,«á­±¸ÑÄÀ inet_addr()
-	addr.sin_addr.s_addr = INADDR_ANY; // ­Y³]©w INADDR_ANY ªí¥Ü¥ô¦ó IP
+	memset(&addr, 0, sizeof(addr)); // æ¸…ç©º,å°‡è³‡æ–™è¨­ç‚º 0
+									//addr.sin_addr.s_addr = inet_addr("127.0.0.1"); // è¨­å®š IP,å¾Œé¢è§£é‡‹ inet_addr()
+	addr.sin_addr.s_addr = INADDR_ANY; // è‹¥è¨­å®š INADDR_ANY è¡¨ç¤ºä»»ä½• IP
 	addr.sin_family = AF_INET;
-	addr.sin_port = htons(37020); // ³]©w port,«á­±¸ÑÄÀ htons()
+	addr.sin_port = htons(37020); // è¨­å®š port,å¾Œé¢è§£é‡‹ htons()
 	printf("set sockaddr_in success\n");
 
 	//bind sListen and sockaddr_in
@@ -61,7 +61,7 @@ int main() {
 		printf("bind sListen and sockaddr_in success\n");
 	}
 	//assert(r != SOCKET_ERROR);
-	//set ioctlsocket«Dªı¶ë¦¡
+	//set ioctlsocketéé˜»å¡å¼
 	unsigned long on_windows = 1;
 	if (ioctlsocket(sListen, FIONBIO, &on_windows) < 0) {
 		printf("set ioctlsocket fail");
